@@ -4,17 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wynnmana.py</title>
-    <link rel="stylesheet" href="../wynnmana2.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css" rel="stylesheet">
 
 <style>
 
 body {
-    font-family: 'Courier New', Courier, monospace;
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column; /* Align content in a column */
+}
+h1 {
+    margin-bottom: 20px; /* Add space between h1 and code */
+}
+pre {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 5px;
+    overflow-x: auto;
+    text-align: left;
 }
 
 </style>
 </head>
 <body>
-    Test
+<h1>tomka700's python script</h1>
+Huge thanks to tomka700 for writing this, I "only" had to translate it into JS and add more features.
+<pre><code class="language-python">cost, cycle, cycle_cost = [], [], []
+j = 1
+spell = 1
+repeat = 0
+# spell cost input
+for i in range(4):
+    cost.append(float(input("{0}. spell cost: ".format(i + 1))))
+# spell cycle input, input to exit cycle isn't counted
+while 0 < spell < 5:
+    spell = int(input("{0}. spell: ".format(j)))
+    cycle.append(spell)
+    j += 1
+cycle.pop()
+# sustain and cps input
+cps = float(input("cps: "))
+mr = float(input("mr: ")) + 25
+ms = float(input("ms: "))
+# make list of costs and spells
+for i in range(len(cycle)):
+    for j in range(4):
+        if cycle[i] == j + 1:
+            cycle[i] = [cost[j], j + 1]
+# shift cost cycle so that first != last
+while cycle[0][1] == cycle[-1][1]:
+    cycle = [cycle[-1]] + cycle[:-1]
+# first two elements are added to avoid out of range error
+for i in range(2):
+    if cycle[i][0] <= 1:
+        cycle_cost.append(1)
+    else:
+        cycle_cost.append(cycle[i][0])
+# add amount of repeat times 5 to cost if previous 2 repeated
+for i in range(2, len(cycle)):
+    if cycle[i - 1][1] == cycle[i - 2][1]:
+        repeat += 1
+        if cycle[i][0] + repeat * 5 <= 1:
+            cycle_cost[i].append(1)
+        else:
+            cycle_cost.append(cycle[i][0] + repeat * 5)
+    else:
+        repeat = 0
+        if cycle[i][0] <= 1:
+            cycle_cost[i].append(1)
+        else:
+            cycle_cost.append(cycle[i][0])
+# add repeat cost to first if cycle ended with a repeat and if it would go over 1
+if cycle[-1][1] == cycle[-2][1]:
+    if cycle[0][0] + repeat * 5 > 1:
+        cycle_cost[0] += repeat * 5
+# sustain - cps * average cost / 3
+print("mana / s: {0}".format(mr / 5 + ms / 3 - cps * sum(cycle_cost) / len(cycle_cost) / 3))
+</code></pre>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+<!-- <script>
+
+document.body.style.backgroundColor = "red";
+const pre = document.querySelector("pre");
+pre.style.backgroundColor = "#121212";
+// const code = document.querySelector("code");
+// code.style.backgroundColor = "red";
+
+</script> -->
+
 </body>
 </html>
