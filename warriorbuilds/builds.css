@@ -1,0 +1,44 @@
+h1 {
+    text-align:center;
+}
+
+summary.header {
+    font-weight: bolder;
+    padding-bottom:0.5%;
+    padding-top:0.5%;
+    font-size:larger;
+}
+
+details > details > summary {
+    font-style:italic;
+    font-weight:bold;
+    font-size:medium;
+    padding-top:0.5%;
+}
+
+ul {
+    padding-top:-5%;
+}
+
+div.certificate {
+    font-size: 80%;
+    right:1%;
+    position:fixed;
+    bottom:1%;
+  }
+
+ul.difficulty {
+    list-style:none;
+}
+
+li.positive:before {
+    content: "+";
+    margin-right: 0.5%;
+    margin-left: -1%;
+}
+
+li.negative:before {
+    content: "-";
+    margin-right: 0.5%;
+    margin-left: -1%;
+}
