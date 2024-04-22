@@ -1,0 +1,100 @@
+div.input {
+    display:inline-block;
+    margin:0vw 1vw 1vw 0vw;
+    position:sticky;
+}
+
+div.outputs table, div.outputs > span {
+    display:inline-block;
+}
+
+/* div.outputs > table > tbody > tr > th, div.outputs > table > tbody > tr > td, div.outputs > span > table > tbody > tr > th, div.outputs > span > table > tbody > tr > td {
+    padding-right:0vw;
+    padding-left:0vw;
+    margin-right:2vw;
+    margin-left:0vw;
+} */
+
+div.outputs th:nth-child(2), #radianceOutput th {
+    text-align: center;
+    padding-right: 0vw;
+}
+
+div.outputs > table, div.outputs > span > table {
+    margin-right:1vw;
+}
+
+div.outputs > table > tbody > tr > td:nth-child(2), #radianceOutput > table > tbody > tr > td {
+    text-align: right;
+}
+
+div.outputs td:nth-child(2)::after, div.outputs > span td::after {
+    /* content: " mana"; */
+    content: " \273A";
+    color:#5ff;
+}
+
+div.outputs > table.radOutput {
+    display:none;
+}
+
+div.outputs {
+    width: fit-content;
+}
+
+.hidden {
+    display:none !important;
+    transition: 0.5s;
+}
+
+.invisible {
+    visibility: hidden !important;
+}
+
+#output, #outputRad, #outputAvgRad {
+    border-top: 1px solid white;
+    border-bottom: 4px double white;
+}
+
+
+
+body {
+    background-color: #121212;
+    color:white;
+}
+
+div.input, div.outputs {
+    background-color: #1f1f1f;
+    box-shadow: 0rem 0rem 0.5rem 0.075rem black;
+    border-radius: 5px;
+    padding:5px;
+}
+
+div.outputs {
+    box-shadow: 0rem 0rem 0.3rem 0.01rem rgb(0,255,0);
+}
+
+input {
+    background-color: #363636;
+    border:none;
+    border-radius: 5px;
+    margin:1px;
+    color:#cacaca;
+    width: fit-content;
+}
+
+#radianceInput {
+    max-width: auto;
+}
+
+#radianceInput th, #radianceInput td {
+    max-width: 20%;
+}
+
+#radianceInput input {
+    width:90%;
+}
+
+/* div.outputs td:nth-child(2), div.outputs > span td {
+    color:#5ff;
+} */

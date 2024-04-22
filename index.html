@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wynnmana</title>
+    <link rel="stylesheet" href="wynnmana2.css">
+</head>
+<body>
+"If Wynnmana is so good why isn't there Wynnmana 2?"
+<h1>Wynnmana 2:</h1>
+
+<div id="inputs">
+
+    <div class="input">
+        <table>
+            <tr>
+                <th>Spell</th>
+                <th>Cost</th>
+            </tr>
+            <tr>
+                <td><label for="spell1">1st</label></td>
+                <td><input type="number" id="spell1"></td>
+            </tr>
+            <tr>
+                <td><label for="spell2">2nd</label></td>
+                <td><input type="number" id="spell2"></td>
+            </tr>
+            <tr>
+                <td><label for="spell3">3rd</label></td>
+                <td><input type="number" id="spell3"></td>
+            </tr>
+            <tr>
+                <td><label for="spell4">4th</label></td>
+                <td><input type="number" id="spell4"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="input">
+        <table>
+            <tr>
+                <td><label for="spellSequence">Spell Sequence:</label></td>
+                <td><input type="text" id="spellSequence" placeholder="e.g., 1213"></td>
+            </tr>
+            <tr>
+                <td><label for="cps">Clicks / second:</label></td>
+                <td><input type="number" id="cps" value="6"></td>
+            </tr>
+            <tr>
+                <td><label for="mr">Mana regen:</label></td>
+                <td><input type="number" id="mr"></td>
+            </tr>
+            <tr>
+                <td><label for="ms">Mana steal:</label></td>
+                <td><input type="number" id="ms"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="input">
+        <table>
+            <tr>
+                <td><label for="spellGain">Gain mana from spells</label></td>
+                <td><input id="spellGain" type="checkbox" name="spellGain" value="checked"></td>
+            </tr>
+            <tr>
+                <td><label for="transcendence">Transcendence</label></td>
+                <td><input id="transcendence" type="checkbox" name="transcendence" value="checked"></td>
+            </tr>
+            <tr>
+                <td><label for="radiance">Radiance</label></td>
+                <td><input id="radiance" type="checkbox" name="radiance" value="checked"></td>
+            </tr>
+            <tr id="divineHonorToggle" class="hidden">
+                <td><label for="divineHonor">Divine Honor</label></td>
+                <td><input id="divineHonor" type="checkbox" name="divineHonor" value="checked"></td>
+            </tr>
+            <tr id="maskToggle">
+                <td><label for="masks">Masks</label></td>
+                <td><input id="masks" type="checkbox" name="masks" value="checked"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="input hidden" id="spellGainInput">
+        <table>
+            <tr>
+                <th>Spell</th>
+                <th>Gain</th>
+            </tr>
+            <tr>
+                <td><label for="spell1gain">1st</label></td>
+                <td><input type="number" id="spell1gain" min="0"></td>
+            </tr>
+            <tr>
+                <td><label for="spell2gain">2nd</label></td>
+                <td><input type="number" id="spell2gain" min="0"></td>
+            </tr>
+            <tr>
+                <td><label for="spell3gain">3rd</label></td>
+                <td><input type="number" id="spell3gain" min="0"></td>
+            </tr>
+            <tr>
+                <td><label for="spell4gain">4th</label></td>
+                <td><input type="number" id="spell4gain" min="0"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="input hidden" id="radianceInput">
+        <table>
+            <tr>
+                <th>Spell cost red.</th>
+                <th>%</th>
+                <th>Raw</th>
+            </tr>
+            <tr>
+                <td>1st spell</td>
+                <td><input type="number" id="costPct1"></td>
+                <td><input type="number" id="costRaw1"></td>
+            </tr>
+            <tr>
+                <td>2nd spell</td>
+                <td><input type="number" id="costPct2"></td>
+                <td><input type="number" id="costRaw2"></td>
+            </tr>
+            <tr>
+                <td>3rd spell</td>
+                <td><input type="number" id="costPct3"></td>
+                <td><input type="number" id="costRaw3"></td>
+            </tr>
+            <tr>
+                <td>4th spell</td>
+                <td><input type="number" id="costPct4"></td>
+                <td><input type="number" id="costRaw4"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="input hidden" id="maskInput">
+        <table>
+            <tr>
+                <td><label for="lunatic">Lunatic</label></td>
+                <td><input id="lunatic" type="checkbox" name="lunatic" value="checked"></td>
+            </tr>
+            <tr>
+                <td><label for="fanatic">Fanatic</label></td>
+                <td><input id="fanatic" type="checkbox" name="fanatic" value="checked"></td>
+            </tr>
+            <tr>
+                <td><label for="coward">Coward</label></td>
+                <td><input id="coward" type="checkbox" name="coward" value="checked"></td>
+            </tr>
+            <tr>
+                <td><label for="awakened">Awakened</label></td>
+                <td><input id="awakened" type="checkbox" name="awakened" value="checked"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="outputs">
+    <table>
+        <tr>
+            <th></th>
+            <th>Mana calculation</th>
+        </tr>
+        <tr>
+            <td>Mana usage per second:</td>
+            <td id="manaUsage">0.00</td>
+        </tr>
+        <tr>
+            <td>Mana gain per second:</td>
+            <td id="manaGain">5.00</td>
+        </tr>
+        <tr>
+            <td>Total mana per second:</td>
+            <td id="output">5.00</td>
+        </tr>
+    </table>
+    <span class="hidden"    id="radianceOutput">
+        <table>
+            <tr><th>Radiance</th></tr>
+            <tr><td id="manaUsageRad">0.00</td></tr>
+            <tr><td id="manaGainRad">5.00</td></tr>
+            <tr><td id="outputRad">5.00</td></tr>
+        </table>
+        <table>
+            <tr><th>Average Radiance</th></tr>
+            <tr><td id="manaUsageAvgRad">0.00</td></tr>
+            <tr><td id="manaGainAvgRad">5.00</td></tr>
+            <tr><td id="outputAvgRad">5.00</td></tr>
+        </table>
+    </span>
+</div>
+<br>
+<p id="additionalInfo" class="hidden">
+    Your true spell cost (which affects spell cost for continous casting) likely isn't 1 
+    but rather something negative which gets increased to 1 since all spells cost at least 1 mana.
+    <br><br>
+    If you care about continous casting please input your true spell cost, else simply don't input spell cost reductions for this spell.
+</p>
+
+<div id="credits">
+    Made by Ingo.
+    Revamped spell cycle input and mana calculation based on a <a href="./python">python script</a> by tomka700.
+</div>
+
+<script src="wynnmana2.js"></script>
+
+</body>
+</html>

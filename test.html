@@ -1,0 +1,205 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Transition</title>
+    <style>
+        td {
+            padding: 5px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td id="cell">0</td>
+        </tr>
+    </table>
+
+    <script>
+        function interpolateColor(value) {
+            const colorRanges = [
+                [-10, -5, [139, 0, 0], [255, 0, 0]],
+                [-5, 0, [255, 0, 0], [255, 255, 0]],
+                [0, 5, [255, 255, 0], [0, 255, 0]],
+                [5, 10, [0, 255, 0], [0, 100, 0]]
+            ];
+
+            // Cap value to -10 or 10 if outside range
+            if (value <= -10) return "rgb(139,0,0)"; // dark red
+            if (value >= 10) return "rgb(0,100,0)"; // dark green
+
+            for (let i = 0; i < colorRanges.length; i++) {
+                const [min, max, startColor, endColor] = colorRanges[i];
+                if (value >= min && value <= max) {
+                    const ratio = (value - min) / (max - min);
+                    const [r1, g1, b1] = startColor;
+                    const [r2, g2, b2] = endColor;
+                    const r = Math.round(r1 + (r2 - r1) * ratio);
+                    const g = Math.round(g1 + (g2 - g1) * ratio);
+                    const b = Math.round(b1 + (b2 - b1) * ratio);
+                    return `rgb(${r},${g},${b})`;
+                }
+            }
+            return "black"; // Default color
+        }
+
+        function updateColor(value) {
+            const cell = document.getElementById('cell');
+            cell.style.color = interpolateColor(value);
+        }
+
+        // Example value
+        updateColor(10); // You can change this value dynamically
+    </script>
+</body>
+</html>-->
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Transition</title>
+    <style>
+        td {
+            padding: 5px;
+            border: 1px solid black;
+            box-shadow: 0rem 0rem 0.5rem 0.075rem black;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td id="cell">0</td>
+        </tr>
+    </table>
+
+    <script>
+        function interpolateShadow(value) {
+            const shadowRanges = [
+                [-10, -5, "0rem 0rem 0.5rem 0.075rem #8B0000", "0rem 0rem 0.5rem 0.075rem #FF0000"],
+                [-5, 0, "0rem 0rem 0.5rem 0.075rem #FF0000", "0rem 0rem 0.5rem 0.075rem #FFFF00"],
+                [0, 5, "0rem 0rem 0.5rem 0.075rem #FFFF00", "0rem 0rem 0.5rem 0.075rem #00FF00"],
+                [5, 10, "0rem 0rem 0.5rem 0.075rem #00FF00", "0rem 0rem 0.5rem 0.075rem #006400"]
+            ];
+
+            // Cap value to -10 or 10 if outside range
+            if (value <= -10) return "0rem 0rem 0.5rem 0.075rem #8B0000"; // dark red
+            if (value >= 10) return "0rem 0rem 0.5rem 0.075rem #006400"; // dark green
+
+            for (let i = 0; i < shadowRanges.length; i++) {
+                const [min, max, startShadow, endShadow] = shadowRanges[i];
+                if (value >= min && value <= max) {
+                    const ratio = (value - min) / (max - min);
+                    const shadow = interpolateValues(startShadow, endShadow, ratio);
+                    return shadow;
+                }
+            }
+            return "0rem 0rem 0.5rem 0.075rem black"; // Default shadow
+        }
+
+        function interpolateValues(start, end, ratio) {
+            const startValues = start.split(' ');
+            const endValues = end.split(' ');
+
+            const interpolatedValues = startValues.map((startValue, index) => {
+                const endValue = endValues[index];
+                if (startValue.includes('rem')) {
+                    const startNumber = parseFloat(startValue.replace('rem', ''));
+                    const endNumber = parseFloat(endValue.replace('rem', ''));
+                    const interpolatedNumber = startNumber + (endNumber - startNumber) * ratio;
+                    return `${interpolatedNumber}rem`;
+                }
+                return startValue;
+            });
+
+            return interpolatedValues.join(' ');
+        }
+
+        function updateShadow(value) {
+            const cell = document.getElementById('cell');
+            cell.style.boxShadow = interpolateShadow(value);
+        }
+
+        // Example value
+        updateShadow(3); // You can change this value dynamically
+    </script>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Transition</title>
+    <style>
+        body {
+            background-color: #121212;
+            color:white;
+        }
+
+        td, input {
+            padding: 5px;
+            border:none;
+            background-color: #1f1f1f;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td id="cell">0</td>
+        </tr>
+    </table>
+<br><br><br><br><br>
+    <input type="number" name="shadowInput" id="shadowInput">
+
+    <script>
+        function interpolateShadow(value) {
+            const colorRanges = [
+                [-10, -5, [128, 0, 0], [255, 0, 0]],
+                [-5, 0, [255, 0, 0], [255, 255, 0]],
+                [0, 5, [255, 255, 0], [0, 255, 0]],
+                [5, 10, [0, 255, 0], [0, 128, 0]]
+            ];
+
+            // Cap value to -10 or 10 if outside range
+            if (value <= -10) return "0rem 0rem 0.5rem 0.075rem rgb(139,0,0)"; // dark red
+            if (value >= 10) return "0rem 0rem 0.5rem 0.075rem rgb(0,100,0)"; // dark green
+
+            for (let i = 0; i < colorRanges.length; i++) {
+                const [min, max, startColor, endColor] = colorRanges[i];
+                if (value >= min && value <= max) {
+                    const ratio = (value - min) / (max - min);
+                    const [r1, g1, b1] = startColor;
+                    const [r2, g2, b2] = endColor;
+                    const r = Math.round(r1 + (r2 - r1) * ratio);
+                    const g = Math.round(g1 + (g2 - g1) * ratio);
+                    const b = Math.round(b1 + (b2 - b1) * ratio);
+                    return `0rem 0rem 0.5rem 0.075rem rgb(${r},${g},${b})`;
+                }
+            }
+            return "0rem 0rem 0.5rem 0.075rem black"; // Default color
+        }
+
+        function updateShadow(value) {
+            const cell = document.getElementById('cell');
+            cell.style.boxShadow = interpolateShadow(value);
+        }
+
+        // Example value
+        const shadowInput = document.getElementById('shadowInput');
+        shadowInput.addEventListener('input', function() {
+            let shadowInputValue = parseFloat(document.getElementById('shadowInput').value);
+            updateShadow(shadowInputValue);
+        })
+        // updateShadow(10); // You can change this value dynamically
+    </script>
+</body>
+</html>
