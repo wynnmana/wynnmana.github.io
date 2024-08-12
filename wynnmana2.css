@@ -1,3 +1,7 @@
+* {
+    transition:0.3s;
+}
+
 div.input {
     display:inline-block;
     margin:0vw 1vw 1vw 0vw;
@@ -41,6 +45,11 @@ div.outputs > table.radOutput {
 .hidden {
     display:none !important;
     transition: 0.5s;
+}
+
+.transparent {
+    opacity:0.4 !important;
+    transition: 0.3s;
 }
 
 .invisible {
@@ -106,6 +115,7 @@ input {
     position:absolute;
     padding:1vw;
     transition:0.5s;
+    max-width: 40%;
 }
 
 #credits:hover {

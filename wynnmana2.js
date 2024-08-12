@@ -46,12 +46,14 @@ radianceCheckbox.addEventListener('change', function() {
     if (radianceCheckbox.checked) {
         radianceInputDiv.classList.remove('hidden');
         radianceOutputTable.classList.remove('hidden');
-        divineHonorToggle.classList.remove('hidden');
+        divineHonorToggle.classList.remove('transparent');
+        divineHonorCheckbox.classList.remove('hidden');
     } else {
         // If radiance checkbox is not checked, add the 'hidden' class to the radiance input div and output table
         radianceInputDiv.classList.add('hidden');
         radianceOutputTable.classList.add('hidden');
-        divineHonorToggle.classList.add('hidden');
+        divineHonorToggle.classList.add('transparent');
+        divineHonorCheckbox.classList.add('hidden');
     }
     
 });
