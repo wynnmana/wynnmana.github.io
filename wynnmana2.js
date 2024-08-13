@@ -61,7 +61,7 @@ radianceCheckbox.addEventListener('change', function() {
 let radMultiplier = 1.2;
 divineHonorCheckbox.addEventListener('change', function() {
     if (divineHonorCheckbox.checked) {
-        radMultiplier = 1.25;
+        radMultiplier = 1.3;
         console.log("Divine Honor on");
     } else {
         radMultiplier = 1.2;
