@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demonstration</title>
+</head>
+<body>
+<p>This site calculates the multiplier you would get from certain amounts of str and dex if a hit only was boosted by one of them.<br>
+(Either dex triggers and the hit does double dmg, or it doesn't trigger and the hit gets boosted by str)</p>
+    <label for="maxsp">Max sp:</label>
+    <input type="number" id="maxsp">
+<br><br>
+    <label for="str">Strength:</label>
+    <input type="number" id="str">
+<br><br>
+    <label for="dex">Dexterity:</label>
+    <input type="number" id="dex">
+<br><br>
+    <label for="output">Damage multiplier:</label>
+    <div id="output" style="display:inline-block"></div>
+
+<script src="strdextest.js"></script>
+</body>
+</html>
